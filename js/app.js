@@ -21,15 +21,9 @@ let http_request = new XMLHttpRequest();
 
 botonEnvio.addEventListener("click", enviarForm);
 
-//Compruebo que la cookie no es nula
-// if (getCookie("ciudadPais")!= null) {
-    // console.log("BUENAS");
-    enviarForm();
-    // request(localStorage.getItem("Ciudad"), localStorage.getItem("Pais"));
-// } else {
-    //Si la cookie es nula llamo al método enviarForm que se encarga de evaluar la entrada del input y si es necesario crear la cookie por defecto
-    // enviarForm();
-// }
+//Llamo a la función enviar form para comprobar la cookie y el localStorage nada más abrir la página
+enviarForm();
+    
 
 function request(city, country) {
     try {
@@ -91,9 +85,8 @@ function deleteCookie(cookieName) {
 }
 
 function crearCookie(city, country){
-    
-    //Creo la cookie con la ciudad y el pais para que dure 1h
-    document.cookie = `ciudadPais=${city},${country}; max-age=7200; path=/`;
+    //Creo la cookie con poner 3600 en el max-age hago que dure una hora
+    document.cookie = `ciudadPais=${city},${country}; max-age=3600; path=/`;
     localStorage.setItem("Ciudad", city);
     localStorage.setItem("Pais", country);
 }
